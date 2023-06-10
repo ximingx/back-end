@@ -6,10 +6,10 @@ class LoginController {
         const user = req.user
         const token = jwt.sign(user, PRIVATE_KEY, {
             algorithm: 'RS256',
-            expiresIn: 60 * 60 * 24 * 7
+            expiresIn: 60 * 60 * 24 * 30
         })
         res.json({
-            req: req.user,
+            user: req.user,
             token
         })
     }

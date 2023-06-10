@@ -1,10 +1,10 @@
 const express = require('express');
-const fs = require('fs')
 const path = require('path')
 const multer = require('multer')
 const uploadRouter = express.Router();
-const verifyAuth = require('../middleware/auth')
 
+const verifyAuth = require('../middleware/auth')
+const FileController = require('../controller/file')
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -17,16 +17,8 @@ const upload = multer({
     })
 })
 
-uploadRouter.post('/single', verifyAuth, upload.single('file'), (req, res) => {
-    res.json({
-        file: req.file
-    })
-})
+uploadRouter.post('/single', verifyAuth, upload.single('file'), FileController.single)
 
-uploadRouter.post('/array', verifyAuth, upload.array('file'), (req, res) => {
-    res.json({
-        file: req.files
-    })
-})
+uploadRouter.post('/array', verifyAuth, upload.array('file'), FileController.array)
 
 module.exports = uploadRouter;

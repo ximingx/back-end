@@ -1,12 +1,12 @@
 const mysql = require('mysql2')
 
 const connectionPool = mysql.createPool({
-    host: "101.42.176.212",
+    host: "localhost",
     port: 3306,
-    database: '',
+    database: 'management',
     connectionLimit: 5,
-    user: "",
-    password: ""
+    user: "root",
+    password: "12345678"
 })
 
 connectionPool.getConnection((err, connection) => {
